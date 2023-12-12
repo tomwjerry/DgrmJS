@@ -1,11 +1,12 @@
 import { terser } from 'rollup-plugin-terser';
-import minifyHTML from 'rollup-plugin-minify-html-literals';
-import replace from '@rollup/plugin-replace';
+import minifyHTMLPkg from 'rollup-plugin-minify-html-literals';
+
+const minifyHTML = minifyHTMLPkg.default;
 
 export default {
 	input: 'src/index.js',
 	output: {
-		file: 'dist/app/index.js',
+		file: 'dist/dgrmjs.js',
 		format: 'iife',
 		plugins: [
 			terser({
@@ -41,7 +42,6 @@ export default {
 					keepClosingSlash: true
 				}
 			}
-		}),
-		replace({ preventAssignment: true, 'https://localhost:7156/api': 'https://dgrm.boyko.tech/api' })
+		})
 	]
 };
